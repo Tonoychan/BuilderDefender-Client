@@ -7,13 +7,18 @@ public class BuildingManager : MonoBehaviour
     private BuildingTypeSO _buildingType;
     
     private Camera _mainCamera;
-    private void Start()
+
+    private void Awake()
     {
-        _mainCamera = Camera.main;
         _buildingTypeList = Resources.Load<BuildingTypeListSO>(nameof(BuildingTypeListSO));
         _buildingType = _buildingTypeList.buildingTypeList[0];
     }
-    
+
+    private void Start()
+    {
+        _mainCamera = Camera.main;
+    }
+
     private void Update()
     {
         mouseVisualTransform.localPosition = GetMouseWorldPosition();

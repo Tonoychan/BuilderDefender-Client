@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BuildingTypeSO", menuName = "ScriptableObjects/BuildingType")]
+[CreateAssetMenu(fileName = "BuildingTypeSO", menuName = "ScriptableObjects/Building/BuildingType")]
 public class BuildingTypeSO : ScriptableObject
 {
     public string nameString;
