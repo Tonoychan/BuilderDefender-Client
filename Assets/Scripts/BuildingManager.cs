@@ -2,15 +2,29 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Transform mouseVisualTransform;
+    [SerializeField] private Transform pfWoodHarvester;
+    
+    private Camera _mainCamera;
+    private void Start()
     {
-        
+        _mainCamera = Camera.main;
+    }
+    
+    private void Update()
+    {
+        mouseVisualTransform.localPosition = GetMouseWorldPosition();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(pfWoodHarvester, mouseVisualTransform.position, Quaternion.identity);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private Vector3 GetMouseWorldPosition()
     {
-        
+        var mouseWorldPosition =  _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
+        return mouseWorldPosition;
     }
 }
