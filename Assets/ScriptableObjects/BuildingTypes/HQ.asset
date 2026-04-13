@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8076748f671f7842be1236448d911ae, type: 3}
-  m_Name: WoodHarvester
+  m_Name: HQ
   m_EditorClassIdentifier: Assembly-CSharp::BuildingTypeSO
-  nameString: Wood Harvester
-  prefab: {fileID: 2009001499241615410, guid: da79921a1a62f9f4f907deac2c3132fb, type: 3}
+  nameString: HQ
+  prefab: {fileID: 2009001499241615410, guid: f7138a0803bcd8b4489362cce910f7b8, type: 3}
   resourceGeneratorData:
-    timerMax: 0.5
+    timerMax: 1
     resourceType: {fileID: 11400000, guid: 6bf929a22f8bdfa489aa411ecae6ec65, type: 2}
     resourceDetectionArea: 7
     maxResourceAmount: 7
-  sprite: {fileID: 21300000, guid: 793ca27a5a3378149aaa12abe85933f4, type: 3}
-  minConstructionRadius: 7
+  sprite: {fileID: 21300000, guid: 7030b8e3eb49e8440ae8eb3ec8b45d05, type: 3}
+  minConstructionRadius: 0
