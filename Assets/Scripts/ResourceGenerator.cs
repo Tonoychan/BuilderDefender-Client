@@ -3,23 +3,57 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
-    private BuildingTypeSO _buildingType;
-    private float timer;
-    private float timerMax;
+    private ResourceGeneratorData _resourceGeneratorData;
+    private float _timer;
+    private float _timerMax;
 
     private void Awake()
     {
-        _buildingType = GetComponent<BuildingTypeHolder>().buildingType;
-        timerMax = _buildingType.resourceGeneratorData.timerMax;
+        _resourceGeneratorData = GetComponent<BuildingTypeHolder>().buildingType.resourceGeneratorData;
+        _timerMax = _resourceGeneratorData.timerMax;
+    }
+
+    private void Start()
+    {
+        var collider2DArray = Physics2D.OverlapCircleAll(transform.position, _resourceGeneratorData.resourceDetectionArea);
+        int nearByResourceAmount = 0;
+        foreach (var collider2D in collider2DArray)
+        {
+            var resourceNode = collider2D.GetComponent<ResourceNode>();
+            if (resourceNode != null)
+            {
+                if (resourceNode.resourceType == _resourceGeneratorData.resourceType)
+                {
+                    nearByResourceAmount++;
+                }
+            }
+        }
+        
+        nearByResourceAmount
+             = Mathf.Clamp(nearByResourceAmount, 0, _resourceGeneratorData.maxResourceAmount);
+
+        if (nearByResourceAmount == 0)
+        {
+            enabled=false;
+        }
+        else
+        {
+            _timerMax = (_resourceGeneratorData.timerMax/2f) + 
+                        _resourceGeneratorData.timerMax * 
+                        (1 - (float)nearByResourceAmount / _resourceGeneratorData.maxResourceAmount);
+        }
+
+        Debug.Log(nearByResourceAmount);
+        Debug.Log(_timerMax);
     }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
         {
-            timer = timerMax;
-            ResourceManager.Instance.AddResource(_buildingType.resourceGeneratorData.resourceType,1);
+            _timer = _timerMax;
+            ResourceManager.Instance.AddResource(_resourceGeneratorData.resourceType,1);
         }
     }
 }

@@ -17,4 +17,6 @@ MonoBehaviour:
   resourceGeneratorData:
     timerMax: 3
     resourceType: {fileID: 11400000, guid: 42a4ee8dccf1b9145ba022bec7d6a3e4, type: 2}
+    resourceDetectionArea: 7
+    maxResourceAmount: 3
   sprite: {fileID: 21300000, guid: 8ead931dd91bff8489e75de9c414f17f, type: 3}

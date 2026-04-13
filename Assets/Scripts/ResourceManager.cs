@@ -29,21 +29,12 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    private void TestLog()
-    {
-        foreach (var resourceType in _resourceAmountDict.Keys)
-        {
-            Debug.Log(resourceType +": "+ _resourceAmountDict[resourceType]);
-        }
-    }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             var resourceTypeList = Resources.Load<ResourceTypeListSO>(nameof(ResourceTypeListSO));
             AddResource(resourceTypeList.resourceTypeList[0], 2);
-            TestLog();
         }
         
     }
@@ -52,7 +43,6 @@ public class ResourceManager : MonoBehaviour
     {
         _resourceAmountDict[resourceType] += amount;
         OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
-        TestLog();
     }
 
     public int GetResourceAmount(ResourceTypeSO resourceType)
